@@ -38,7 +38,6 @@ io.on("connection", (socket) => {
 
   // Listen for chat messages
   socket.on("chat message", (data) => {
-    // Broadcast the message to all connected clients except the sender
     socket.broadcast.emit("chat message", {
       msg: data.msg,
       sender: nicknames[socket.id],
@@ -47,7 +46,6 @@ io.on("connection", (socket) => {
 
   // Listen for typing event
   socket.on("typing", () => {
-    // Broadcast that the user is typing to other users
     socket.broadcast.emit("user typing", nicknames[socket.id]);
   });
 });
